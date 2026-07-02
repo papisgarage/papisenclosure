@@ -29,27 +29,7 @@ npm run dev
 
 Opens at **http://localhost:3000**
 
-### Network drive note
-
-If the project lives on `\\PAPI-HQ\...`, UNC paths often break `npm install` and Vite's file watcher. Use one of these:
-
-**Option A — map a drive letter**
-```powershell
-net use Z: "\\PAPI-HQ\Media Transfer\Tow Truck Enclosure Website"
-Z:
-npm install
-npm run dev
-```
-
-**Option B — local dev copy (recommended)**
-```powershell
-robocopy "\\PAPI-HQ\Media Transfer\Tow Truck Enclosure Website" "C:\temp\papis-enclosures" /MIR /XD node_modules dist
-cd C:\temp\papis-enclosures
-npm install
-npm run dev
-```
-
-After editing on the network share, re-sync `src/` to the local copy before testing.
+**Project folder:** `C:\Users\Papis\Documents\tow-truck-enclosure-website`
 
 ---
 
@@ -146,32 +126,28 @@ To update Shorts on the site, add or remove videos from the playlist — no code
 
 **Repo:** [github.com/papisgarage/papisenclosure](https://github.com/papisgarage/papisenclosure)
 
-This project folder on the network share (`\\PAPI-HQ\...`) is where you edit files. Git runs from a **local folder** on your PC because network drives and git don't play well together.
+This folder is both your working project and your git repository:
 
-| Path | Purpose |
-|------|---------|
-| `\\PAPI-HQ\Media Transfer\Tow Truck Enclosure Website` | Edit here (network share) |
-| `C:\Users\Papis\Documents\tow-truck-enclosure-website` | Local git copy (auto-synced when you push) |
+`C:\Users\Papis\Documents\tow-truck-enclosure-website`
 
 ### First-time setup
 
 ```powershell
+cd C:\Users\Papis\Documents\tow-truck-enclosure-website
 .\scripts\git-setup.ps1
 ```
 
-This clones your GitHub repo (if needed), connects the remote, and syncs your project files.
-
-Remote URL is stored in `git.remote` (copy from `git.remote.example` if missing).
+This connects the folder to GitHub. Remote URL is stored in `git.remote` (copy from `git.remote.example` if missing).
 
 ### Push to GitHub
 
-After making changes on the network share:
+After making changes:
 
 ```powershell
 .\scripts\publish-to-github.ps1 "Describe your changes"
 ```
 
-That script syncs files → commits → pushes to `main` on GitHub.
+That commits and pushes to `main` on GitHub.
 
 ### GitHub Pages (auto-deploy)
 
@@ -246,7 +222,7 @@ Font/                  Source font file
 | `npm run build` | Type-check and production build |
 | `npm run preview` | Preview production build locally |
 | `npm run lint` | Run ESLint |
-| `.\scripts\publish-to-github.ps1 "msg"` | Sync to git folder, commit, push |
+| `.\scripts\publish-to-github.ps1 "msg"` | Commit and push to GitHub |
 
 ---
 

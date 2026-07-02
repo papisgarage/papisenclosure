@@ -1,4 +1,4 @@
-﻿# One-time setup: clone/connect local git folder to GitHub
+﻿# One-time setup: connect this folder to GitHub
 # Run from project root: .\scripts\git-setup.ps1
 
 $ErrorActionPreference = "Stop"
@@ -6,21 +6,15 @@ $ErrorActionPreference = "Stop"
 
 Write-Host "PAPIS Enclosures - Git setup" -ForegroundColor Cyan
 Write-Host ""
+Write-Host "Project: $ProjectRoot" -ForegroundColor DarkGray
 
 $remoteUrl = Get-GitRemoteUrl
-Write-Host "Remote: $remoteUrl" -ForegroundColor DarkGray
+Write-Host "Remote:  $remoteUrl" -ForegroundColor DarkGray
+Write-Host ""
 
-if (-not (Test-Path (Join-Path $GitRoot ".git"))) {
-    Write-Host "Cloning repository..." -ForegroundColor Yellow
-    New-Item -ItemType Directory -Force -Path (Split-Path $GitRoot -Parent) | Out-Null
-    git clone $remoteUrl $GitRoot
-} else {
-    Ensure-GitRepository
-}
+Ensure-GitRepository
 
-Sync-ShareToGit
-
-Push-Location $GitRoot
+Push-Location $ProjectRoot
 try {
     git status -sb
     Write-Host ""

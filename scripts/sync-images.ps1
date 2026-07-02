@@ -2,7 +2,7 @@
 # Run from project root: .\scripts\sync-images.ps1
 
 $ErrorActionPreference = "Stop"
-$root = Split-Path -Parent (Split-Path -Parent $MyInvocation.MyCommand.Path)
+$root = Split-Path -Parent $PSScriptRoot
 
 Write-Host "Syncing assets to $root ..." -ForegroundColor Cyan
 
