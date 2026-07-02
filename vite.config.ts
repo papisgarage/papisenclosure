@@ -1,12 +1,10 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Production base path for GitHub Pages — matches github.com/papisgarage/papisenclosure
-const GITHUB_PAGES_BASE = '/papisenclosure/'
-
-export default defineConfig(({ mode }) => ({
+// Served from the custom apex domain papisenclosures.com, so assets live at the root.
+export default defineConfig(() => ({
   plugins: [react()],
-  base: mode === 'production' ? GITHUB_PAGES_BASE : '/',
+  base: '/',
   server: {
     port: 3000,
     strictPort: true,

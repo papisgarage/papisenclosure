@@ -45,7 +45,7 @@ export function useYouTubeShorts(): UseYouTubeShortsResult {
 
     let cancelled = false
 
-    async function load() {
+    async function load(playlistId: string, apiKey: string) {
       setLoading(true)
       setError(null)
 
@@ -77,7 +77,7 @@ export function useYouTubeShorts(): UseYouTubeShortsResult {
       }
     }
 
-    load()
+    load(playlistId, apiKey)
 
     return () => {
       cancelled = true
