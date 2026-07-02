@@ -8,6 +8,7 @@ import { SECTION_IDS } from '../lib/constants'
 
 const navLinks = [
   { label: 'Features', href: `#${SECTION_IDS.features}` },
+  { label: 'Financing', href: `#${SECTION_IDS.financing}` },
   { label: 'Shorts', href: `#${SECTION_IDS.shorts}` },
   { label: 'Video', href: `#${SECTION_IDS.video}` },
   { label: 'Gallery', href: `#${SECTION_IDS.gallery}` },

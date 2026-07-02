@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
-import { ChevronDown, Phone, Mail } from 'lucide-react'
+import { ChevronDown, Phone, Mail, CreditCard } from 'lucide-react'
 import Button from './ui/Button'
 import { getHeroImages } from '../lib/images'
 import { ANIMATION, CONTACT, PRICING, SECTION_IDS } from '../lib/constants'
@@ -93,6 +93,16 @@ export default function HeroSection() {
               {PRICING.display}
             </span>
           </p>
+        </div>
+
+        <div className="mt-4">
+          <a
+            href={`#${SECTION_IDS.financing}`}
+            className="inline-flex items-center gap-2 text-sm font-medium text-cyan/90 transition-colors hover:text-cyan"
+          >
+            <CreditCard className="h-4 w-4" />
+            Financing available
+          </a>
         </div>
 
         <div className="mt-5 flex flex-col items-center justify-center gap-4 sm:flex-row">

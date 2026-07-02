@@ -17,6 +17,7 @@ export const ANIMATION = {
 export const SECTION_IDS = {
   hero: 'hero',
   features: 'features',
+  financing: 'financing',
   gallery: 'gallery',
   video: 'video',
   shorts: 'shorts',
