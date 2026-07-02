@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ethnocentric brand font — place file at public/fonts/ethnocentric-rg.ttf */
+@font-face {
+  font-family: 'Ethnocentric';
+  src: url('/fonts/ethnocentric-rg.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply font-body bg-charcoal text-white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    @apply bg-cyan/30 text-white;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl;
+  }
+
+  .glass-card {
+    @apply glass rounded-2xl shadow-glass;
+  }
+
+  .section-padding {
+    @apply py-section;
+  }
+
+  .text-gradient {
+    @apply bg-gradient-to-r from-white via-cyan/90 to-electric-bright bg-clip-text text-transparent;
+  }
+
+  .btn-glow {
+    box-shadow: 0 0 30px rgba(34, 211, 238, 0.2);
+  }
+}
+
+@layer utilities {
+  .hide-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .hide-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+}

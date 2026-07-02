@@ -142,21 +142,71 @@ To update Shorts on the site, add or remove videos from the playlist — no code
 
 ---
 
+## Git & GitHub
+
+**Repo:** [github.com/papisgarage/papisenclosure](https://github.com/papisgarage/papisenclosure)
+
+This project folder on the network share (`\\PAPI-HQ\...`) is where you edit files. Git runs from a **local folder** on your PC because network drives and git don't play well together.
+
+| Path | Purpose |
+|------|---------|
+| `\\PAPI-HQ\Media Transfer\Tow Truck Enclosure Website` | Edit here (network share) |
+| `C:\Users\Papis\Documents\tow-truck-enclosure-website` | Local git copy (auto-synced when you push) |
+
+### First-time setup
+
+```powershell
+.\scripts\git-setup.ps1
+```
+
+This clones your GitHub repo (if needed), connects the remote, and syncs your project files.
+
+Remote URL is stored in `git.remote` (copy from `git.remote.example` if missing).
+
+### Push to GitHub
+
+After making changes on the network share:
+
+```powershell
+.\scripts\publish-to-github.ps1 "Describe your changes"
+```
+
+That script syncs files → commits → pushes to `main` on GitHub.
+
+### GitHub Pages (auto-deploy)
+
+Pushes to `main` trigger a GitHub Actions workflow that builds and deploys the site to:
+
+**https://papisgarage.github.io/papisenclosure/**
+
+Enable it once in your repo: **Settings → Pages → Build and deployment → Source: GitHub Actions**
+
+Optional: add these **repository secrets** so YouTube works on the live site:
+
+| Secret | Value |
+|--------|-------|
+| `VITE_YOUTUBE_API_KEY` | Your API key |
+| `VITE_YOUTUBE_PLAYLIST_ID` | Your playlist URL or ID |
+| `VITE_YOUTUBE_BUILD_VIDEO_ID` | Build video URL or ID |
+
+---
+
 ## Deploy (GitHub Pages)
 
-1. Update `GITHUB_PAGES_BASE` in `vite.config.ts` to match your repo name:
-   ```ts
-   const GITHUB_PAGES_BASE = '/your-repo-name/'
-   ```
+Production base path is set in `vite.config.ts`:
 
-2. Build:
-   ```bash
-   npm run build
-   ```
+```ts
+const GITHUB_PAGES_BASE = '/papisenclosure/'
+```
 
-3. Deploy the `dist/` folder to GitHub Pages.
+Manual build (if needed):
+
+```bash
+npm run build
+```
 
 Preview the production build locally:
+
 ```bash
 npm run preview
 ```
@@ -177,7 +227,11 @@ public/
   fonts/               Ethnocentric brand font
   favicon.svg
 scripts/
-  sync-images.ps1      Copy Web Pictures → site folders
+  sync-images.ps1         Copy Web Pictures → site folders
+  git-setup.ps1           One-time git clone + connect
+  publish-to-github.ps1   Sync, commit, and push to GitHub
+.github/workflows/
+  deploy.yml              Auto-deploy to GitHub Pages on push
 Web Pictures/          Original photo library (not deployed)
 Font/                  Source font file
 ```
@@ -192,6 +246,7 @@ Font/                  Source font file
 | `npm run build` | Type-check and production build |
 | `npm run preview` | Preview production build locally |
 | `npm run lint` | Run ESLint |
+| `.\scripts\publish-to-github.ps1 "msg"` | Sync to git folder, commit, push |
 
 ---
 

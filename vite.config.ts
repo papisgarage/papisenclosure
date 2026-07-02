@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Production base path for GitHub Pages — update to match your repo name
-const GITHUB_PAGES_BASE = '/tow-truck-enclosure-website/'
+// Production base path for GitHub Pages — matches github.com/papisgarage/papisenclosure
+const GITHUB_PAGES_BASE = '/papisenclosure/'
 
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
