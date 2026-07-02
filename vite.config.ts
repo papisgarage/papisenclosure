@@ -6,7 +6,7 @@ const GITHUB_PAGES_BASE = '/papisenclosure/'
 
 export default defineConfig(({ mode }) => ({
   plugins: [react()],
-  base: mode === 'production' ? GITHUB_PAGES_BASE : '/',
+  base: '/',
   server: {
     port: 3000,
     strictPort: true,
